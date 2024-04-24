@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Prices</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('web5_price_list_bg.jpg');
+            background-size: cover;
+
+        }
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: auto;
+            border: 5px solid black;
+        }
+
+        th{
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            background-color: rgb(87, 233, 87);
+        }
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        td:hover{
+            background-color: yellow;
+        }
+        button{
+            padding:5px;
+            background-color: orange;
+            color:black;
+        }
+        button:hover {
+            background-color: green; 
+        }
+    </style>
+</head>
+<body><center>
+    <h2>Check Price</h2>
+    <label for="productName"><h3>Enter Product Name:</h3></label>
+    <input type="text" id="productName"><br>
+   <br> <button onclick="checkPrice()">Check Price</button>
+</center>
+    <p id="priceResult"></p>
+    <h2><center>Product Prices</center></h2>
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>Potato</td>
+            <td>$30</td>
+        </tr>
+        <tr>
+            <td>Tomato</td>
+            <td>$40</td>
+        </tr>
+        <tr>
+            <td>Onion</td>
+            <td>$80</td>
+        </tr>
+        <tr>
+            <td>Ginger</td>
+            <td>$300</td>
+        </tr>
+        <tr>
+            <td>Curry Leaves</td>
+            <td>$31</td>
+        </tr>
+        <tr>
+            <td>Brinjal</td>
+            <td>$20</td>
+        </tr>
+        <tr>
+            <td>Drum Stick</td>
+            <td>$89</td>
+        </tr>
+        <tr>
+            <td>Turmeric</td>
+            <td>$700</td>
+        </tr>
+        <tr>
+            <td>Cinnamon</td>
+            <td>$800</td>
+        </tr>
+        <tr>
+            <td>Cloves</td>
+            <td>$1590</td>
+        </tr>
+        <tr>
+            <td>Cardamom</td>
+            <td>$900</td>
+        </tr>
+    </table>
+
+    
+
+    <script>
+        function checkPrice() {
+            var productName = document.getElementById('productName').value;
+            var table = document.querySelector('table');
+            var rows = table.rows;
+
+            for (var i = 1; i < rows.length; i++) {
+                var productNameCell = rows[i].cells[0];
+                var priceCell = rows[i].cells[1];
+
+                if (productNameCell.textContent.toLowerCase() === productName.toLowerCase()) {
+                    document.getElementById('priceResult').textContent = 'Price of ' + productName + ' is: ' + priceCell.textContent;
+                    return;
+                }
+            }
+
+            document.getElementById('priceResult').textContent = 'Product not found!';
+        }
+    </script>
+</body>
+</html>

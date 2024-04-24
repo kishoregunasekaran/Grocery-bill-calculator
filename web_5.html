@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GKD Grocery Bill Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('web_5_bg.jpeg');
+            background-size: cover; 
+            
+        }
+        .container {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8); 
+            padding: 70px;
+            border-radius: 50px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+        }
+        #bill-details {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        label{
+            color:rgb(7, 138, 16);
+            font-size: x-large;
+        }
+        input{
+            padding:10px;
+            background-color: rgb(211, 245, 245);
+            color: rgb(32, 44, 44);
+        }
+        button{
+            padding:5px;
+            background-color: orange;
+            color:black;
+        }
+        button:hover {
+            background-color: green; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><U>GKD GROCERY</U></h1>
+        <form id="product-form">
+            <label for="product-name"><B>PRODUCT NAME</B></label><br><br>
+            <input type="text" id="product-name" placeholder="Product Name"><br><br>
+            <label for="quantity"><B>QUANTITY</B></label><br><br>
+            <input type="number" id="quantity" placeholder="Quantity"><br><br>
+            <label for="amount"><B>AMOUNT</B></label><br><br>
+            <input type="number" id="amount" placeholder="Amount"><br><br>
+            <button type="button" onclick="addProduct()">ADD PRODUCT</button>
+            <button type="button" onclick="checkPrice()">Check Price</button> 
+        </form>
+        <div id="bill-details">
+            <p>Bill Number: <span id="bill-number">123</span></p>
+            <p>Date: <span id="bill-date">2024-04-17</span></p>
+        </div>
+        <div id="product-list"></div>
+        <p>Total Amount: <span id="total-amount">0</span></p>
+    </div>
+
+    <script>
+        let totalAmount = 0;
+
+        function addProduct() {
+            const productName = document.getElementById('product-name').value;
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const amount = parseFloat(document.getElementById('amount').value);
+            
+            const subtotal = quantity * amount;
+            totalAmount += subtotal;
+
+            const productDetails = `${productName} Quantity: ${quantity} ,  Amount: $${amount.toFixed(2)} ,  Subtotal: $${subtotal.toFixed(2)}`;
+            document.getElementById('product-list').innerHTML += `<p>${productDetails}</p>`;
+
+            
+            document.getElementById('product-name').value = '';
+            document.getElementById('quantity').value = '';
+            document.getElementById('amount').value = '';
+
+            
+            document.getElementById('total-amount').textContent = totalAmount.toFixed(2);
+        }
+
+        function checkPrice() {
+            window.open('web5_price_list.html', '_blank'); 
+        }
+    </script>
+</body>
+</html>
